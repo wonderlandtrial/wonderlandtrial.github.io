@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app dark>
     <v-navigation-drawer
       persistent
       :mini-variant="miniVariant"
@@ -73,17 +73,27 @@
 export default {
   data () {
     return {
-      clipped: false,
-      drawer: true,
+      clipped: true,
+      drawer: false,
       fixed: false,
-      items: [{
+      items: [
+        {
         icon: 'bubble_chart',
         title: 'Inspire'
-      }],
-      miniVariant: false,
+        },
+        {
+          icon: 'bubble_chart',
+          title: 'Inspire 2'
+        },
+        {
+          icon: 'bubble_chart',
+          title: 'Inspire 3'
+        }
+      ],
+      miniVariant: true,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'Wonderland Trial'
     }
   },
   name: 'App'
