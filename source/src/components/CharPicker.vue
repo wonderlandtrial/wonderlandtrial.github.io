@@ -1,16 +1,16 @@
 <template>
 <v-container grid-list-md>
   <v-layout row wrap>
-    <span v-for="(slot, idx) in slots" :key="`${slot}${idx}`">
+    <span v-for="(slot, idx) in slots" :key="`${slot.name}${idx}`">
       <v-avatar @click="onSlotClicked(slot)">
-        <img src="/static/apple-touch-icon-180x180.png" alt="avatar">
+        <img :src="slot.potrait" alt="Not Found!">
       </v-avatar>
     </span>
   </v-layout>
   <v-layout row wrap>
     <span v-for="char in charlist" :key="char.name">
       <v-avatar @click="onCharClicked(char)">
-        <img src="/static/apple-touch-icon-180x180.png" alt="avatar">
+        <img :src="char.potrait" alt="Not Found!">
       </v-avatar>
       <p>{{char.name}}</p>
     </span>
@@ -38,13 +38,18 @@
 
 <script>
 import CharList from '@/models/CharacterList'
+import Character from '@/models/Character'
 
 export default {
   name: 'CharPicker',
   data() {
     return {
       slots: [
-        'white', 'black', 'gold', 'advisor', 'advisor'
+        new Character('', 'white', null, []),
+        new Character('', 'black', null, []),
+        new Character('', 'gold', null, []),
+        new Character('', 'advisor', null, []),
+        new Character('', 'advisor', null, []),
       ],
       charlist: [],
       selectedChar: {
@@ -55,7 +60,7 @@ export default {
   },
   methods: {
     onSlotClicked(slot) {
-      this.charlist = CharList[slot].filter(x => true)
+      this.charlist = CharList[slot.position].filter(x => true)
     },
     onCharClicked(char) {
 

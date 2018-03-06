@@ -2,23 +2,23 @@ import Character from './Character'
 
 export default {
   gold: [
-    new Character('gold 1', 'gold', ['lorem', 'ipsum']),
-    new Character('gold 2', 'gold', ['lorem', 'ipsum'])
+    new Character('Crushfang', 'gold', null, ['lorem', 'ipsum']),
+    new Character('Dylan', 'gold', null, ['lorem', 'ipsum'])
   ],
   black: [
-    new Character('black 1', 'black', ['lorem', 'ipsum']),
-    new Character('black 2', 'black', ['lorem', 'ipsum'])
+    new Character('Fatima', 'black', null, ['lorem', 'ipsum']),
+    new Character('Ned', 'black', null, ['lorem', 'ipsum'])
   ],
   white: [
-    new Character('white 1', 'white', ['lorem', 'ipsum']),
-    new Character('white 2', 'white', ['lorem', 'ipsum'])
+    new Character('Angelia', 'white', null, ['lorem', 'ipsum']),
+    new Character('Aosta', 'white', null, ['lorem', 'ipsum'])
   ],
   advisor: [
-    new Character('advisor 1', 'advisor', ['lorem', 'ipsum']),
-    new Character('advisor 2', 'advisor', ['lorem', 'ipsum'])
+    new Character('Crushfang', 'advisor', null, ['lorem', 'ipsum']),
+    new Character('Ned', 'advisor', null, ['lorem', 'ipsum'])
   ],
   monster: [
-    new Character('monster 1', 'monster', ['lorem', 'ipsum']),
-    new Character('monster 2', 'monster', ['lorem', 'ipsum'])
+    new Character('monster 1', 'monster', null, ['lorem', 'ipsum']),
+    new Character('monster 2', 'monster', null, ['lorem', 'ipsum'])
   ]
 }
