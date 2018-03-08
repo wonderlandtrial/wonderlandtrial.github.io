@@ -1,9 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import CharPicker from '@/components/CharPicker'
 import TrialGroupPage from '@/pages/TrialGroupView'
-import GroupView from '@/components/GroupView'
+import GroupView from '@/pages/GroupView'
 
 Vue.use(Router)
 
