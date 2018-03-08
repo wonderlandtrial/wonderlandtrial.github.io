@@ -21,8 +21,10 @@ const store = {
 
   mutations: {
     initStore(state, value) {
-      state.groups = value.groups
-      state.idCounter = value.idCounter
+      if (value) {
+        state.groups = value.groups
+        state.idCounter = value.idCounter
+      }
     },
     addGroup(state, value) {
       state.groups.push({
