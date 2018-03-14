@@ -2,8 +2,10 @@
 <v-card>
   <v-card-title primary-title>
     <div>
-      <h3 class="headline mb-0">{{data.name}}</h3>
-      <div>LOREM IPSUM</div>
+      <v-btn flat to="/">
+        <h3 class="headline mb-0">{{data.name}}</h3>
+      </v-btn>
+
       <v-expansion-panel>
         <v-expansion-panel-content v-for="(trial,i) in trials" :key="i" :value="true">
           <div slot="header">{{trial.title}}</div>

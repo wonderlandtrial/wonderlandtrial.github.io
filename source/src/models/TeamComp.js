@@ -14,7 +14,6 @@ class TeamComp {
       new Character('', 'advisor', null, [])
     ]
   ) {
-    console.log(characters)
     this.turnTaken = turnTaken
     this.note = note
     this.numBattles = numBattles
