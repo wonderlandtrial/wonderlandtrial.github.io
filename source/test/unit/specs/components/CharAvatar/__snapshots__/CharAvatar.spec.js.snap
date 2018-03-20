@@ -1,0 +1,7 @@
+exports[`VBtn.js should render component and match snapshot 1`] = `
+
+<div class="avatar">
+  <img src="" alt="" />
+</div>
+
+`;
