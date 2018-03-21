@@ -2,27 +2,27 @@ import Character from './Character'
 
 export default {
   gold: [
-    new Character('Crushfang', 'gold', null, ['lorem', 'ipsum']),
-    new Character('Dylan', 'gold', null, ['lorem', 'ipsum'])
+    new Character('Crushfang', 'gold'),
+    new Character('Dylan', 'gold')
   ],
   black: [
-    new Character('Fatima', 'black', null, ['lorem', 'ipsum']),
-    new Character('Ned', 'black', null, ['lorem', 'ipsum'])
+    new Character('Fatima', 'black'),
+    new Character('Ned', 'black')
   ],
   white: [
-    new Character('Angelia', 'white', null, ['lorem', 'ipsum']),
-    new Character('Aosta', 'white', null, ['lorem', 'ipsum'])
+    new Character('Angelia', 'white'),
+    new Character('Aosta', 'white')
   ],
   advisor: [
-    new Character('Crushfang', 'gold', null, ['lorem', 'ipsum']),
-    new Character('Dylan', 'gold', null, ['lorem', 'ipsum']),
-    new Character('Fatima', 'black', null, ['lorem', 'ipsum']),
-    new Character('Ned', 'black', null, ['lorem', 'ipsum']),
-    new Character('Angelia', 'white', null, ['lorem', 'ipsum']),
-    new Character('Aosta', 'white', null, ['lorem', 'ipsum'])
+    new Character('Crushfang', 'gold'),
+    new Character('Dylan', 'gold'),
+    new Character('Fatima', 'black'),
+    new Character('Ned', 'black'),
+    new Character('Angelia', 'white'),
+    new Character('Aosta', 'white')
   ],
   monster: [
-    new Character('monster 1', 'monster', null, ['lorem', 'ipsum']),
-    new Character('monster 2', 'monster', null, ['lorem', 'ipsum'])
+    new Character('monster 1', 'monster'),
+    new Character('monster 2', 'monster')
   ]
 }

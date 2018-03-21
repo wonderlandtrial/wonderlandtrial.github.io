@@ -16,7 +16,9 @@
     </div>
 
     <char-picker
-      v-model="showPicker" />
+      v-model="showPicker"
+      :characters="charList"
+      @selected="getSelectedChar"/>
   </div>
 </div>
 </template>
@@ -25,12 +27,14 @@
 import Character from '@/models/Character'
 import CharAvatar from '@/components/CharAvatar'
 import CharPicker from '@/components/CharPicker2'
+import CharacterList from '@/models/CharacterList'
 
 export default {
   components: {CharAvatar, CharPicker},
   data() {
     return {
       avatar: new Character('Fatima', 'black', null, ['lorem', 'ipsum']),
+      charList: CharacterList.advisor,
       showAction: false,
       showPicker: false
     }
@@ -44,6 +48,9 @@ export default {
     },
     showCharPicker() {
       this.showPicker = true
+    },
+    getSelectedChar(char) {
+      console.log(char)
     }
   }
 }

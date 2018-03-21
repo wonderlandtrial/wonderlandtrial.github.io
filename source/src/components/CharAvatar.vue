@@ -1,6 +1,6 @@
 <template>
 <v-avatar
-  :size="84"
+  :size="size"
   @mouseenter="$emit('mouseenter', '')">
   <img :src="value.potrait" :alt="value.name" />
 </v-avatar>
@@ -9,6 +9,12 @@
 <script>
 export default {
   name: 'CharAvatar',
-  props: ['value']
+  props: {
+    value: Object,
+    size: {
+      type: Number,
+      default: 84
+    }
+  }
 }
 </script>

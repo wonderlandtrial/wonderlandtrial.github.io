@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import store from '@/store/modules/trial-group-store'
 
-describe.skip('mutations', () => {
+describe('trial-group-store', () => {
   it('addGroup', () => {
     const state = {
       groups: [],

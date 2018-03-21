@@ -2,12 +2,11 @@ class Character {
   constructor(
     name = '',
     position = 'monster',
-    potrait = '',
-    descriptions = []
+    skins = []
   ) {
     this.name = name
     this.position = position
-    this.descriptions = descriptions
+    this.skins = skins
 
     if (!name) {
       if (position === 'gold') {
@@ -20,8 +19,12 @@ class Character {
         this.potrait = '/static/assets/potraits/logo.jpg'
       }
     } else {
-      this.potrait = `/static/assets/potraits/${name.toLocaleLowerCase()}_potrait.png`
+      this.potrait = `/static/assets/potraits/${this.getPotraitPath()}_potrait.png`
     }
+  }
+
+  getPotraitPath() {
+    return this.name.toLocaleLowerCase().split(' ').join('_')
   }
 }
 
