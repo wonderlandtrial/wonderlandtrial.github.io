@@ -2,7 +2,7 @@
 <v-avatar
   :size="84"
   @mouseenter="$emit('mouseenter', '')">
-  <img :src="value.potrait" :alt="value.name">
+  <img :src="value.potrait" :alt="value.name" />
 </v-avatar>
 </template>
 

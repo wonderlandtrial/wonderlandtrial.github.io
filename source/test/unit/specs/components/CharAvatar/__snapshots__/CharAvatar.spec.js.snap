@@ -1,7 +1,13 @@
-exports[`VBtn.js should render component and match snapshot 1`] = `
+// Jest Snapshot v1, https://goo.gl/fbAQLP
 
-<div class="avatar">
-  <img src="" alt="" />
-</div>
+exports[`CharAvatar rendered result should match snapshot 1`] = `
+
+<v-avatar size="84"
+          data-server-rendered="true"
+>
+  <img src="/static/assets/potraits/fatima_potrait.png"
+       alt="Fatima"
+  >
+</v-avatar>
 
 `;

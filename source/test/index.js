@@ -1,16 +1,15 @@
-import Vue from 'vue'
+import Vue from 'vue/dist/vue.runtime.js'
 import { mount, shallow } from 'avoriaz'
-import toHaveBeenWarnedInit from '@/../test/util/to-have-been-warned'
+import toHaveBeenWarnedInit from '@/test/util/to-have-been-warned'
+import Vuetify from 'vuetify'
 import { compileToFunctions } from 'vue-template-compiler'
 
+import 'babel-polyfill'
+Vue.use(Vuetify)
+// Vuetify.install(Vue)
+// Vue.config.productionTip = true
 export function test(name, cb) {
   toHaveBeenWarnedInit()
-
-/*
-  const app = document.createElement('div')
-  app.setAttribute('data-app', true)
-  document.body.appendChild(app)
-*/
 
   rafPolyfill(window)
 
