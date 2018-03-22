@@ -1,14 +1,9 @@
-import { mount, createLocalVue } from '@vue/test-utils'
-import Vuetify from 'vuetify'
-import 'babel-polyfill'
+import { test } from '@/test'
 
 import CharAvatar from '@/components/CharAvatar'
 import Character from '@/models/Character'
 
-const localVue = createLocalVue()
-localVue.use(Vuetify)
-
-describe('CharAvatar', () => {
+test('CharAvatar', ({ mount, localVue }) => {
   it('rendered result should match snapshot', () => {
     let char = new Character('Fatima', 'black')
 
