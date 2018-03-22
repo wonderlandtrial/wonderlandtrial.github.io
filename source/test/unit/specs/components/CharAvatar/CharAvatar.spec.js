@@ -1,11 +1,8 @@
 import { shallow, createLocalVue } from '@vue/test-utils'
-// import VAvatar from 'vuetify/es5/components/VAvatar'
+import VAvatar from 'vuetify/es5/components/VAvatar'
 
 import CharAvatar from '@/components/CharAvatar'
 import Character from '@/models/Character'
-
-const localVue = createLocalVue()
-// localVue.use(VAvatar)
 
 describe('CharAvatar', () => {
   it('rendered result should match snapshot', () => {
@@ -14,7 +11,7 @@ describe('CharAvatar', () => {
     const wrapper = shallow(CharAvatar, {
       propsData: {
         value: char
-      },
+      }
       // stubs: {
       //   VAvatar: VAvatar
       // }
