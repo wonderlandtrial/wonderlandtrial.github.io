@@ -60,11 +60,20 @@ test('CharPicker', ({ mount, localVue }) => {
       },
       localVue
     })
-    wrapper.setData({ selectedChar: {foo:'bar'} })
+    wrapper.setData({
+      selectedChar: {foo:'bar'},
+      level: 17
+    })
 
     wrapper.findAll('button').at(0).trigger('click')
 
     expect(wrapper.emitted().selected).toBeTruthy()
-    expect(wrapper.emitted().selected[0]).toEqual([{foo:'bar'}])
+    expect(wrapper.emitted().selected[0]).toEqual([
+      {
+        character: {foo:'bar'},
+        level: 17,
+        note: ''
+      }
+    ])
   })
 })

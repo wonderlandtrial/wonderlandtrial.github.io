@@ -29,6 +29,11 @@
         v-model="level"
       ></v-text-field>
 
+      <v-text-field
+        label="Note"
+        v-model="note"
+      ></v-text-field>
+
     </v-card-text>
     <v-card-actions>
       <v-btn color="primary" flat @click="selectChar">OK</v-btn>
@@ -39,6 +44,7 @@
 </template>
 
 <script>
+import TeamMember from '@/models/TeamMember'
 import CharAvatar from '@/components/CharAvatar'
 
 export default {
@@ -49,7 +55,8 @@ export default {
     return {
       model: false,
       selectedChar: null,
-      level: 60
+      level: 60,
+      note: ''
     }
   },
   watch: {
@@ -67,7 +74,8 @@ export default {
     selectChar() {
       this.model = false
 
-      this.$emit('selected', {...this.selectedChar})
+      const selectedMember = new TeamMember(this.selectedChar, this.level, this.note)
+      this.$emit('selected', {...selectedMember})
     }
   }
 }

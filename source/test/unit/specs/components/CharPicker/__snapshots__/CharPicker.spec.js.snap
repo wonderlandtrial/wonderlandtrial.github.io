@@ -20,7 +20,7 @@ exports[`CharPicker render white picker 1`] = `
         </div>
         <div class="card__text">
           <div tabindex="0"
-               data-uid="22"
+               data-uid="24"
                role="combobox"
                class="input-group input-group--append-icon input-group--text-field input-group--select primary--text"
           >
@@ -91,6 +91,19 @@ exports[`CharPicker render white picker 1`] = `
             <div class="input-group__input">
               <input tabindex="0"
                      aria-label="Level"
+                     type="text"
+              >
+            </div>
+            <div class="input-group__details">
+            </div>
+          </div>
+          <div class="input-group input-group--text-field primary--text">
+            <label>
+              Note
+            </label>
+            <div class="input-group__input">
+              <input tabindex="0"
+                     aria-label="Note"
                      type="text"
               >
             </div>
@@ -201,6 +214,19 @@ exports[`CharPicker rendered empty picker 1`] = `
             <div class="input-group__input">
               <input tabindex="0"
                      aria-label="Level"
+                     type="text"
+              >
+            </div>
+            <div class="input-group__details">
+            </div>
+          </div>
+          <div class="input-group input-group--text-field primary--text">
+            <label>
+              Note
+            </label>
+            <div class="input-group__input">
+              <input tabindex="0"
+                     aria-label="Note"
                      type="text"
               >
             </div>
