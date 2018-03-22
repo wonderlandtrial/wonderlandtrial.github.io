@@ -25,7 +25,7 @@
       </v-select>
 
       <v-text-field
-        lavel="Level"
+        label="Level"
         v-model="level"
       ></v-text-field>
 

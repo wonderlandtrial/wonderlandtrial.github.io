@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CharPicker render white picker 1`] = `
+
+<v-dialog max-width="500px"
+          origin="top center"
+>
+  <v-card>
+    <v-card-title>
+      Character Picker
+    </v-card-title>
+    <v-card-text>
+      <v-select label="Select a character..."
+                items="[object Object],[object Object]"
+                item-text="name"
+      >
+      </v-select>
+      <v-text-field label="Level">
+      </v-text-field>
+    </v-card-text>
+    <v-card-actions>
+      <v-btn color="primary"
+             flat
+      >
+        OK
+      </v-btn>
+      <v-btn flat>
+        CANCEL
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+</v-dialog>
+
+`;
+
+exports[`CharPicker rendered empty picker 1`] = `
+
+<v-dialog max-width="500px"
+          origin="top center"
+>
+  <v-card>
+    <v-card-title>
+      Character Picker
+    </v-card-title>
+    <v-card-text>
+      <v-select label="Select a character..."
+                item-text="name"
+      >
+      </v-select>
+      <v-text-field label="Level">
+      </v-text-field>
+    </v-card-text>
+    <v-card-actions>
+      <v-btn color="primary"
+             flat
+      >
+        OK
+      </v-btn>
+      <v-btn flat>
+        CANCEL
+      </v-btn>
+    </v-card-actions>
+  </v-card>
+</v-dialog>
+
+`;
