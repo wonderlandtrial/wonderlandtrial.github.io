@@ -68,9 +68,6 @@ export default {
       this.model = false
 
       this.$emit('selected', {...this.selectedChar})
-    },
-    test() {
-      console.log('cc')
     }
   }
 }

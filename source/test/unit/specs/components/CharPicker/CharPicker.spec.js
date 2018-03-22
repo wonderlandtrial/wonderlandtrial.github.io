@@ -13,11 +13,58 @@ test('CharPicker', ({ mount, localVue }) => {
   it('render white picker', ()=> {
     const wrapper = mount(CharPicker, {
       propsData: {
-        characters: CharacterList.white
+        characters: CharacterList.white,
+        value: false
       },
       localVue
     })
 
     expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it('cancel will close dialog', () => {
+    const wrapper = mount(CharPicker, {
+      propsData: {
+        value: true
+      },
+      localVue
+    })
+
+    expect(wrapper.vm.model).toBe(true)
+
+    wrapper.findAll('button').at(1).trigger('click')
+
+    expect(wrapper.vm.model).toBe(false)
+    expect(wrapper.emitted().selected).toBeFalsy()
+  })
+
+  it('selectChar() will close dialog', () => {
+    const wrapper = mount(CharPicker, {
+      propsData: {
+        value: true
+      },
+      localVue
+    })
+
+    expect(wrapper.vm.model).toBe(true)
+
+    wrapper.findAll('button').at(0).trigger('click')
+
+    expect(wrapper.vm.model).toBe(false)
+  })
+
+  it('selectChar() will close emit selected value', () => {
+    const wrapper = mount(CharPicker, {
+      propsData: {
+        value: true
+      },
+      localVue
+    })
+    wrapper.setData({ selectedChar: {foo:'bar'} })
+
+    wrapper.findAll('button').at(0).trigger('click')
+
+    expect(wrapper.emitted().selected).toBeTruthy()
+    expect(wrapper.emitted().selected[0]).toEqual([{foo:'bar'}])
   })
 })
