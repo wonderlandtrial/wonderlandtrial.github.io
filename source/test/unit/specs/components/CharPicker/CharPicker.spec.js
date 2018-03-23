@@ -1,6 +1,6 @@
 import { test } from '@/test'
 
-import CharPicker from '@/components/CharPicker2'
+import CharPicker from '@/components/CharPicker'
 import CharacterList from '@/models/CharacterList'
 
 test('CharPicker', ({ mount, localVue }) => {

@@ -1,105 +1,81 @@
 <template>
-<v-container grid-list-md>
-  <v-layout row wrap>
-    <v-flex xs12 v-for="(comp, idx) in comps" :key="idx">
-      <span v-for="(slot, idx) in comp.characters" :key="`${slot.name}${idx}`">
-        <div style="display: inline-block;">
-          <v-avatar @click="onSlotClicked(slot)">
-            <img :src="slot.potrait" alt="Not Found!">
-          </v-avatar>
-          <div>Description</div>
-        </div>
-      </span>
-    </v-flex>
-  </v-layout>
+<v-dialog
+  v-model="model"
+  max-width="500px"
+  origin="top center">
+  <v-card>
+    <v-card-title>Character Picker</v-card-title>
+    <v-card-text>
 
-  <v-layout row wrap>
-    <span v-for="(slot, idx) in slots" :key="`${slot.name}${idx}`">
-      <v-avatar @click="onSlotClicked(slot, idx)">
-        <img :src="slot.potrait" alt="Not Found!">
-      </v-avatar>
-    </span>
-  </v-layout>
-  <v-layout row wrap>
-    <span v-for="char in charlist" :key="char.name">
-      <v-avatar @click="onCharClicked(char, charlist.index)">
-        <img :src="char.potrait" alt="Not Found!">
-      </v-avatar>
-      <p>{{char.name}}</p>
-    </span>
-  </v-layout>
-
-  <v-layout row wrap v-show="charlist.length>0">
-    <v-form>
       <v-select
-        v-model="selectedChar.rarity"
-        :items="[
-          {value:'N', text:'N'},
-          {value:'R', text:'R'},
-          {value:'SR', text:'SR'},
-          {value:'SSR', text:'SSR'}]"
-        label="Rarity"
-      ></v-select>
+        label="Select a character..."
+        :items="characters"
+        v-model="selectedChar"
+        item-text="name"
+      >
+        <template slot="selection" slot-scope="data">
+          <char-avatar :size="24" v-model="data.item" />
+          {{data.item.name}}
+        </template>
+
+        <template slot="item" slot-scope="data">
+          <char-avatar :size="48" v-model="data.item" />
+          {{data.item.name}}
+        </template>
+      </v-select>
+
       <v-text-field
-        v-model="selectedChar.level"
         label="Level"
-      />
-    </v-form>
-    <v-form>
-      <v-text-field
-        label="No. Turns"
-      />
+        v-model="level"
+      ></v-text-field>
+
       <v-text-field
         label="Note"
-      />
-      <v-text-field
-        label="No. Battles"
-      />
-      <v-text-field
-        label="Battle Notes"
-      />
-    </v-form>
-    <v-btn color="info" @click="onAddClicked">Add</v-btn>
-  </v-layout>
-</v-container>
+        v-model="note"
+      ></v-text-field>
+
+    </v-card-text>
+    <v-card-actions>
+      <v-btn color="primary" flat @click="selectChar">OK</v-btn>
+      <v-btn flat @click="model=false">CANCEL</v-btn>
+    </v-card-actions>
+  </v-card>
+</v-dialog>
 </template>
 
 <script>
-import CharList from '@/models/CharacterList'
-import Character from '@/models/Character'
-import TeamComp from '@/models/TeamComp'
+import TeamMember from '@/models/TeamMember'
+import CharAvatar from '@/components/CharAvatar'
 
 export default {
   name: 'CharPicker',
+  components: { CharAvatar },
+  props: ['value', 'characters'],
   data() {
     return {
-      slots: [
-        new Character('', 'white', null, []),
-        new Character('', 'black', null, []),
-        new Character('', 'gold', null, []),
-        new Character('', 'advisor', null, []),
-        new Character('', 'advisor', null, [])
-      ],
-      charlist: [],
-      selectedChar: {
-        rarity: 'SSR',
-        level: 60
-      },
-      comps: [ ]
+      model: false,
+      selectedChar: null,
+      level: 60,
+      note: ''
     }
   },
+  watch: {
+    value(val) {
+      this.model = val
+    },
+    model(val) {
+      this.$emit('input', val)
+    }
+  },
+  mounted() {
+    this.model = this.value
+  },
   methods: {
-    onSlotClicked(slot, idx) {
-      this.charlist = CharList[slot.position].filter(x => true)
-      this.charlist.index = idx
-    },
-    onCharClicked(char, idx) {
-      this.slots.splice(idx, 1, char)
-    },
-    onAddClicked() {
-      this.comps.push(new TeamComp(
-        null, null, null, null, [...this.slots]
-      ))
+    selectChar() {
+      this.model = false
+
+      const selectedMember = new TeamMember(this.selectedChar, this.level, this.note)
+      this.$emit('selected', {...selectedMember})
     }
   }
 }
