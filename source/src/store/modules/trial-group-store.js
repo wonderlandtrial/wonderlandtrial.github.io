@@ -14,7 +14,7 @@ const store = {
     },
     getGroup(state) {
       return (index) => {
-        return state.groups.find(val => val.id==index)
+        return {...state.groups.find(val => val.id==index)}
       }
     }
   },
@@ -33,6 +33,9 @@ const store = {
       })
 
       localforage.setItem('trialGroups', state)
+    },
+    updateGroup(state, group) {
+      // let selected = state.groups.find(val => val.id==group.id)
     },
     removeGroup(state, index) {
       state.groups.splice(index, 1)
