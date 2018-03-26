@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="foundation">
-    <char-avatar v-model="avatar" @mouseenter="onHover"></char-avatar>
+    <char-avatar v-model="teamMember.character" @mouseenter="onHover"></char-avatar>
 
     <div
       class="action-container"
@@ -25,6 +25,7 @@
 
 <script>
 import Character from '@/models/Character'
+import TeamMember from '@/models/TeamMember'
 import CharAvatar from '@/components/CharAvatar'
 import CharPicker from '@/components/CharPicker'
 import CharacterList from '@/models/CharacterList'
@@ -35,10 +36,17 @@ export default {
   props: ['value', 'type'],
   data() {
     return {
-      avatar: new Character('Fatima', 'black', null, ['lorem', 'ipsum']),
       charList: CharacterList.advisor,
       showAction: false,
-      showPicker: false
+      showPicker: false,
+      teamMember: new TeamMember(
+        new Character('', '', null), 60, ''
+      )
+    }
+  },
+  watch: {
+    value(val) {
+      this.teamMember = val
     }
   },
   methods: {
@@ -51,8 +59,16 @@ export default {
     showCharPicker() {
       this.showPicker = true
     },
-    getSelectedChar(char) {
-      console.log(char)
+    getSelectedChar(member) {
+      this.teamMember = member
+
+      this.$emit('input', {...member})
+    }
+  },
+  mounted() {
+    this.charList = CharacterList[this.type]
+    if (this.value) {
+      this.teamMember = this.value
     }
   }
 }
