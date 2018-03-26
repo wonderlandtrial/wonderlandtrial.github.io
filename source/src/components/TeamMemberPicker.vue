@@ -1,5 +1,4 @@
 <template>
-<div>
   <div class="foundation">
     <char-avatar v-model="teamMember.character" @mouseenter="onHover"></char-avatar>
 
@@ -20,7 +19,6 @@
       :characters="charList"
       @selected="getSelectedChar"/>
   </div>
-</div>
 </template>
 
 <script>
@@ -28,7 +26,6 @@ import Character from '@/models/Character'
 import TeamMember from '@/models/TeamMember'
 import CharAvatar from '@/components/CharAvatar'
 import CharPicker from '@/components/CharPicker'
-import CharacterList from '@/models/CharacterList'
 
 export default {
   name: 'TeamMemberPicker',
@@ -36,7 +33,7 @@ export default {
   props: ['value', 'type'],
   data() {
     return {
-      charList: CharacterList.advisor,
+      charList: [ new Character('', '', null) ],
       showAction: false,
       showPicker: false,
       teamMember: new TeamMember(
@@ -66,7 +63,7 @@ export default {
     }
   },
   mounted() {
-    this.charList = CharacterList[this.type]
+    this.charList = this.$store.getters[this.$store.ACTIONS.CHARACTER_LIST.GET_LIST](this.type)
     if (this.value) {
       this.teamMember = this.value
     }

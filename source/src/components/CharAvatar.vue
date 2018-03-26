@@ -10,7 +10,13 @@
 export default {
   name: 'CharAvatar',
   props: {
-    value: Object,
+    value: {
+      type: Object,
+      default: {
+        name: '',
+        potrait: ''
+      }
+    },
     size: {
       type: Number,
       default: 84

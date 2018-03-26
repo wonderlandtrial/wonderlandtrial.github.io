@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import Actions from './actions'
 
 import trialGroups from './modules/trial-group-store'
+import characterList from './modules/character-list-store'
 
 Vue.use(Vuex)
 
@@ -34,7 +35,8 @@ const store = new Vuex.Store({
   },
 
   modules: {
-    trialGroups
+    trialGroups,
+    characterList
   }
 })
 
