@@ -1,5 +1,13 @@
 import localforage from 'localforage'
 
+import Character from '@/models/Character'
+import TeamMember from '@/models/TeamMember'
+
+/**
+ * Groups (e.g. Monday's Trial, Sunday's Trial)
+ * -- Trials (e.g. wt Lv40, Wt4, Wt Lv60)
+ * -- -- Teams (e.g. [bangel, nolva, roger, sharice] with notes and annotations)
+ */
 const store = {
   namespaced: true,
 
@@ -29,18 +37,24 @@ const store = {
     addGroup(state, value) {
       state.groups.push({
         ...value,
-        id: ++state.idCounter
+        id: ++state.idCounter,
+        trials: []
       })
-
-      localforage.setItem('trialGroups', state)
     },
-    updateGroup(state, group) {
-      // let selected = state.groups.find(val => val.id==group.id)
+    addTrial(state, {group, trialName}) {
+      group.trials.push({
+        title: trialName,
+        id: ++state.idCounter,
+        teamMembers: {
+          gold: new TeamMember(new Character('', '', null), 60, ''),
+          black: new TeamMember(new Character('', '', null), 60, ''),
+          white: new TeamMember(new Character('', '', null), 60, ''),
+          advisor: new TeamMember(new Character('', '', null), 60, '')
+        }
+      })
     },
-    removeGroup(state, index) {
-      state.groups.splice(index, 1)
-
-      localforage.setItem('trialGroups', state)
+    modifyTeam(state, {trial, team}) {
+      trial.teamMembers = team
     }
   },
 
@@ -52,11 +66,30 @@ const store = {
         }
       )
     },
-    addGroup({ commit }, value) {
+    addGroup({ state, commit }, value) {
       commit('addGroup', value)
+      localforage.setItem('trialGroups', state)
     },
-    removeGroup({ commit }, index) {
-      commit('removeGroup', index)
+    addTrial({ state, commit }, {id, trialName}) {
+      let group = state.groups.find(val => val.id==id)
+
+      commit('addTrial', {
+        group,
+        trialName
+      })
+
+      localforage.setItem('trialGroups', state)
+    },
+    modifyTeam({ state, commit }, {groupId, trialId, team}) {
+      let group = state.groups.find(val => val.id==groupId)
+      let trial = group.trials.find(val => val.id==trialId)
+
+      commit('modifyTeam', {
+        trial,
+        team
+      })
+
+      localforage.setItem('trialGroups', state)
     }
   }
 }

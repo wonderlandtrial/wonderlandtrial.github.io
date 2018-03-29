@@ -7,23 +7,27 @@
       </v-btn>
 
       <v-expansion-panel>
-        <v-expansion-panel-content v-for="(trial,i) in trials" :key="i" :value="true">
+        <v-expansion-panel-content v-for="(trial,i) in data.trials" :key="i" :value="true">
           <div slot="header">{{trial.title}}</div>
           <div style="display:flex;">
             <team-member-picker
               v-model="trial.teamMembers.gold"
+              @input="onTeamChanged(data.id, trial.id, trial.teamMembers)"
               type="gold"
             ></team-member-picker>
             <team-member-picker
               v-model="trial.teamMembers.black"
+              @input="onTeamChanged(data.id, trial.id, trial.teamMembers)"
               type="black"
             ></team-member-picker>
             <team-member-picker
               v-model="trial.teamMembers.white"
+              @input="onTeamChanged(data.id, trial.id, trial.teamMembers)"
               type="white"
             ></team-member-picker>
             <team-member-picker
               v-model="trial.teamMembers.advisor"
+              @input="onTeamChanged(data.id, trial.id, trial.teamMembers)"
               type="advisor"
             ></team-member-picker>
           </div>
@@ -33,9 +37,10 @@
   </v-card-title>
   <v-card-actions>
     <v-text-field
+      v-model="trialName"
       label="Trial Name"
     />
-    <v-btn flat>Add a trial</v-btn>
+    <v-btn flat @click="onAddTrialClicked">Add a trial</v-btn>
   </v-card-actions>
 </v-card>
 </template>
@@ -52,33 +57,7 @@ export default {
   data() {
     return {
       Actions: this.$store.ACTIONS.TRIAL_GROUP,
-      trials: [
-        {
-          title: 'Pang\'s Trial',
-          teamMembers: {
-            gold: new TeamMember(new Character('', '', null), 60, ''),
-            black: new TeamMember(new Character('', '', null), 60, ''),
-            white: new TeamMember(new Character('', '', null), 60, ''),
-            advisor: new TeamMember(new Character('', '', null), 60, '')
-          }
-        },
-        { title: 'Golemwalt\'s Trial',
-          teamMembers: {
-            gold: new TeamMember(new Character('', '', null), 60, ''),
-            black: new TeamMember(new Character('', '', null), 60, ''),
-            white: new TeamMember(new Character('', '', null), 60, ''),
-            advisor: new TeamMember(new Character('', '', null), 60, '')
-          }
-        },
-        { title: 'Kitty\'s Trial',
-          teamMembers: {
-            gold: new TeamMember(new Character('', '', null), 60, ''),
-            black: new TeamMember(new Character('', '', null), 60, ''),
-            white: new TeamMember(new Character('', '', null), 60, ''),
-            advisor: new TeamMember(new Character('', '', null), 60, '')
-          }
-        }
-      ]
+      trialName: ''
     }
   },
   computed: {
@@ -96,6 +75,30 @@ export default {
   watch: {
     trials(val) {
 
+    }
+  },
+  methods: {
+    onAddTrialClicked() {
+      this.$store.dispatch(
+        this.Actions.ADD_TRIAL,
+        {
+          id: this.id,
+          trialName: this.trialName
+        }
+      )
+    },
+    onTeamChanged(groupId, trialId, team) {
+      console.log(groupId)
+      console.log(trialId)
+      console.log(team)
+      this.$store.dispatch(
+        this.Actions.MODIFY_TEAM,
+        {
+          groupId,
+          trialId,
+          team
+        }
+      )
     }
   }
 }
