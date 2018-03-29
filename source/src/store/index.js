@@ -31,6 +31,9 @@ const store = new Vuex.Store({
           commit('setToReady')
         }
       )
+    },
+    purge({ dispatch }) {
+      dispatch(Actions.TRIAL_GROUP.PURGE)
     }
   },
 

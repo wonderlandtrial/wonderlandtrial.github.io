@@ -24,6 +24,9 @@ const store = {
       return (index) => {
         return {...state.groups.find(val => val.id==index)}
       }
+    },
+    displayData(state) {
+      return {...state}
     }
   },
 
@@ -33,6 +36,10 @@ const store = {
         state.groups = value.groups
         state.idCounter = value.idCounter
       }
+    },
+    purge(state) {
+      state.groups = []
+      state.idCounter = 0
     },
     addGroup(state, value) {
       state.groups.push({
@@ -65,6 +72,10 @@ const store = {
           commit('initStore', value)
         }
       )
+    },
+    purge({state, commit}) {
+      localforage.clear()
+      commit('purge')
     },
     addGroup({ state, commit }, value) {
       commit('addGroup', value)
