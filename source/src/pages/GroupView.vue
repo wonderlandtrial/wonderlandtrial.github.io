@@ -5,6 +5,7 @@
       <v-btn flat to="/">
         <h3 class="headline mb-0">{{data.name}}</h3>
       </v-btn>
+      <p v-if="data.trials.length<=0">You have never recorded any trial. Add your first trial (e.g. Pang's trial).</p>
 
       <v-expansion-panel>
         <v-expansion-panel-content v-for="(trial,i) in data.trials" :key="i" :value="true">

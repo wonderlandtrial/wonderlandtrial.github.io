@@ -1,14 +1,19 @@
 <template>
 <v-container grid-list-md>
+  <h1>
+    Wonderland Trials
+  </h1>
+  <p v-if="trialGroups.length>0">Your WT runs:</p>
+  <p v-else>You don't have any runs yet, add your first run (e.g. Monday's WT)</p>
   <v-layout row wrap>
-    <v-flex xs4 v-for="(val, idx) in trialGroups" :key="idx">
+    <v-flex md4 xs12 v-for="(val, idx) in trialGroups" :key="idx">
       <group-card :value="val" />
     </v-flex>
-    <v-flex xs4>
+    <v-flex md4 xs12>
       <v-card>
         <v-card-title>
           <v-text-field
-            label="Group Name"
+            label="Add new run"
             ref="groupNameTextField"
             v-model="newGroupName"
             :rules="[ v => !!v || 'Group name is required!' ]"
@@ -16,8 +21,9 @@
         </v-card-title>
         <v-card-actions>
           <v-spacer />
-          <v-btn large icon @click="onAddClicked">
+          <v-btn flat @click="onAddClicked">
             <v-icon large>add_circle</v-icon>
+            <span>Add</span>
           </v-btn>
         </v-card-actions>
       </v-card>
